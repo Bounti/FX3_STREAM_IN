@@ -1,0 +1,13 @@
+HDL_SIGNAL           | ZYNQ_PIN | FMC_PORT     | FX3_FMC_PORT | FX3_PIN
+=====================|==========|==============|==============|========
+slcs                 | K21      | FMC_LA_16_N  | G19          | CTL0  GPIO_17          
+slwr                 | G20      | FMC_LA_20_P  | G21          | CTL1  GPIO_18          
+sloe                 | G22      | FMC_LA_20_N  | G22          | CTL2  GPIO_19         
+flaga                | F19      | FMC_LA_22_N  | G25          | CTL4  GPIO_21         
+flagb                | D22      | FMC_LA_25_P  | G27          | CTL5  GPIO_22         
+addr[0]              | B21      | FMC_LA_33_P  | G36          | CTL11 GPIO_28         
+addr[1]              | B22      | FMC_LA_33_N  | G37          | CTL12 GPIO_29
+
+fx3_reset            | B17      | FMC_LA_31_N  | G34          | CTL10 GPIO_27
+fx3_read_ready       | G20      | FMC_LA_20_P  | G21          | CTL1  GPIO_18          
+fx3_data_available   | K21      | FMC_LA_16_N  | G19          | CTL0  GPIO_17          
