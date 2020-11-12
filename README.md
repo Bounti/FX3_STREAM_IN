@@ -69,7 +69,7 @@ make load
 This project is based on the following projects:
 - The FX3 firmware and the GPIF configuration is a fork of [DomesdayDuplicator](https://github.com/simoninns/DomesdayDuplicator).
 - We refer to the [official examples](https://www.cypress.com/documentation/code-examples/usb-superspeed-code-examples) provided by Cypress.
-
+- The synthesis script are forked from [SAB4Z](https://gitlab.telecom-paris.fr/renaud.pacalet/sab4z)
 
 # Debugging the FX3 firmware
 
@@ -90,3 +90,8 @@ cd fx3
 gdb-multiarch -x ./load.gdb
 ```
 
+# LICENSE
+
+All files copied from Cypress examples are under the CYPRESS SOFTWARE LICENSE AGREEMENT.
+The Synthesis script is under the CeCILL license
+All other files are under the GNU GPL3 license.
