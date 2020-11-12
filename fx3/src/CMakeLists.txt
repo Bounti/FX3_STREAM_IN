@@ -1,4 +1,4 @@
-file(GLOB SOURCES 
+file(GLOB SOURCES
   ./cyfxtx.c
   ./dmon.c
   ./usbDescriptor.c

@@ -15,22 +15,15 @@ set(FX3_INSTALL_PATH "${CMAKE_BINARY_DIR}/cyfx3sdk/")
 set(FX3_ELF2IMG_PATH "${CMAKE_BINARY_DIR}/cyfx3sdk/util/elf2img/")
 set(FX3_DOWNLOAD_PATH "${CMAKE_BINARY_DIR}/cyusb_linux_1.0.5/")
 
-function(download_file url filename hash_type hash)
-if(NOT EXISTS ${filename})
-  file(DOWNLOAD ${url} ${filename}
-       TIMEOUT 60  # seconds
-       EXPECTED_HASH ${hash_type}=${hash}
-       TLS_VERIFY ON)
-endif()
-endfunction(download_file)
-
 # project name
 project(fx3_dmon.elf)
 
 # download and install fx3 sdk
 IF(NOT EXISTS ./fx3_sdk)
-	#download_file(http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/FX3_SDK_1.3.4_Linux.tar.gz ./fx3_sdk.tar.gz SHA1 662e95d1e4674108cbd16f6bef94be470f2d747f TIMEOUT 3600)
-        file(DOWNLOAD http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/FX3_SDK_1.3.4_Linux.tar.gz ./fx3_sdk.tar.gz SHOW_PROGRESS EXPECTED_HASH SHA1=662e95d1e4674108cbd16f6bef94be470f2d747f TIMEOUT 7200)
+        file(DOWNLOAD http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/FX3_SDK_1.3.4_Linux.tar.gz ./fx3_sdk.tar.gz
+		SHOW_PROGRESS
+		EXPECTED_HASH SHA1=662e95d1e4674108cbd16f6bef94be470f2d747f
+		TIMEOUT 7200)
 	file(ARCHIVE_EXTRACT INPUT ./fx3_sdk.tar.gz)
 	file(ARCHIVE_EXTRACT INPUT ./ARM_GCC.tar.gz)
 	file(ARCHIVE_EXTRACT INPUT ./cyusb_linux_1.0.5.tar.gz)
@@ -46,40 +39,55 @@ set(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS)
 set(LINKER_SCRIPT "${FX3_INSTALL_PATH}/fw_build/fx3_fw/fx3.ld")
 
 # define CPU OPTIONS
-set(CPU_OPTIONS -mcpu=arm926ej-s -mthumb)
+set(CPU_OPTIONS
+  -mcpu=arm926ej-s
+  -mthumb
+  -fmessage-length=0
+  -fsigned-char
+  -ffunction-sections
+  -fdata-sections
+  -Wall
+)
+
+set(ASM_OPTIONS
+  -fmessage-length=0
+  -fsigned-char
+  -ffunction-sections
+  -fdata-sections
+  -Wall
+)
 
 # optimizations (-O0 -O1 -O2 -O3 -Os -Ofast -Og -flto)
 set(CMAKE_C_FLAGS_DEBUG "-O0 -g3 -DDEBUG")
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3")
-set(CMAKE_C_FLAGS_RELEASE "-O0 -g3")
-#"-Os -flto")
-set(CMAKE_CXX_FLAGS_RELEASE "-O0 -g3")
-#"-Os -flto")
+set(CMAKE_C_FLAGS_RELEASE "-O3 -g3")
+set(CMAKE_CXX_FLAGS_RELEASE "-30 -g3")
 
 add_definitions(
--D__CYU3P_TX__
+-D__CYU3P_TX__=1
 )
 
 add_compile_options(
   ${CPU_OPTIONS}
-  -fmessage-length=0 
-  -fsigned-char 
-  -ffunction-sections 
-  -fdata-sections 
-  -Wall 
-  -MMD -MP 
+  -fmessage-length=0
+  -fsigned-char
+  -ffunction-sections
+  -fdata-sections
+  -Wall
+  -std=gnu11
+  -MMD -MP
 )
 
 add_link_options(
   ${CPU_OPTIONS}
-  -nostartfiles 
-  -Xlinker --gc-sections 
+  -nostartfiles
+  -Xlinker --gc-sections
   -Wl,-Map,${PROJECT_NAME}.map -Wl,-d -Wl,--no-wchar-size-warning -Wl,--entry,CyU3PFirmwareEntry
 )
 
 include_directories(
   ${CMAKE_SOURCE_DIR}
-  "include" 
+  "include"
   "${FX3_INSTALL_PATH}/fw_lib/1_3_4/inc"
 )
 
@@ -102,4 +110,3 @@ add_custom_target(install_sdk
   COMMAND bash ../install_sdk.sh
   VERBATIM
 )
-

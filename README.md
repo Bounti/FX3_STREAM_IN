@@ -90,6 +90,11 @@ cd fx3
 gdb-multiarch -x ./load.gdb
 ```
 
+The FX3 firmware program sends feedback through the micro-USB interface.
+```
+picocom -b115200 -fn -d8 -r -l /dev/ttyACM0
+```
+
 # LICENSE
 
 All files copied from Cypress examples are under the CYPRESS SOFTWARE LICENSE AGREEMENT.
