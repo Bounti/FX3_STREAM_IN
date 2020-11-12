@@ -64,6 +64,16 @@ make install_sdk
 make load
 ```
 
+# Evaluating Performance
+
+Using Cypress SDK, we measured a throughput of 380MB/s.
+> This measure may vary with the Operating System, the USB3.0 chip controler on your PC, and the driver you are using.
+```
+./09_cyusb_performance -e 129 -s 32 -q 8 -d 10
+```
+
+![Performance](./doc/perf.svg)
+
 # Credits
 
 This project is based on the following projects:
@@ -100,3 +110,4 @@ picocom -b115200 -fn -d8 -r -l /dev/ttyACM0
 All files copied from Cypress examples are under the CYPRESS SOFTWARE LICENSE AGREEMENT.
 The Synthesis script is under the CeCILL license
 All other files are under the GNU GPL3 license.
+
