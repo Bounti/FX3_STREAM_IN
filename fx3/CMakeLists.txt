@@ -93,7 +93,8 @@ add_subdirectory(src)
 add_custom_target(load
   COMMAND echo "Generated and load FX3 image into the FX3 chip memory."
   COMMAND "${FX3_ELF2IMG_PATH}elf2img" -vectorload yes -i "./src/${PROJECT_NAME}" -o ${PROJECT_NAME}.img
-  COMMAND "${FX3_DOWNLOAD_PATH}/src/download_fx3" -t I2C -i ${PROJECT_NAME}.img
+  COMMAND export CYUSB_ROOT=$(pwd)/cyusb_linux_1.0.5
+  COMMAND "${FX3_DOWNLOAD_PATH}src/download_fx3" -t I2C -i "./${PROJECT_NAME}.img"
   VERBATIM
 )
 
