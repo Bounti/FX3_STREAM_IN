@@ -49,19 +49,13 @@ set(CPU_OPTIONS
   -Wall
 )
 
-set(ASM_OPTIONS
-  -fmessage-length=0
-  -fsigned-char
-  -ffunction-sections
-  -fdata-sections
-  -Wall
-)
+#set(CMAKE_ASM_FLAGS "${CPU_OPTIONS} -x assembler-with-cpp")
 
 # optimizations (-O0 -O1 -O2 -O3 -Os -Ofast -Og -flto)
 set(CMAKE_C_FLAGS_DEBUG "-O0 -g3 -DDEBUG")
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3")
 set(CMAKE_C_FLAGS_RELEASE "-O3 -g3")
-set(CMAKE_CXX_FLAGS_RELEASE "-30 -g3")
+set(CMAKE_CXX_FLAGS_RELEASE "-03 -g3")
 
 add_definitions(
 -D__CYU3P_TX__=1
@@ -69,11 +63,6 @@ add_definitions(
 
 add_compile_options(
   ${CPU_OPTIONS}
-  -fmessage-length=0
-  -fsigned-char
-  -ffunction-sections
-  -fdata-sections
-  -Wall
   -std=gnu11
   -MMD -MP
 )
