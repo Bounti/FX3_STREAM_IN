@@ -145,7 +145,7 @@ if { $argc == 4 } {
 cd $builddir
 
 ###################
-# Create DMON IP #
+# Create GPIF IP #
 ###################
 create_project -part $part -force gpif gpif
 set sources {gpif oddr2}
@@ -156,26 +156,62 @@ import_files -force -norecurse
 ipx::package_project -root_dir gpif -vendor www.eurecom.fr -library GPIF -force gpif
 close_project
 
+###################
+# Create DMON IP #
+###################
+create_project -part $part -force producer producer
+set sources {producer}
+foreach f $sources {
+        add_files $rootdir/hdl/$f.vhd
+}
+import_files -force -norecurse
+ipx::package_project -root_dir producer -vendor www.eurecom.fr -library PRODUCER -force producer
+close_project
+
+
 ############################
 ## Create top level design #
 ############################
 set top top
 create_project -part $part -force $top .
 set_property board_part $board [current_project]
-set_property ip_repo_paths { ./gpif} [current_fileset]
+set_property ip_repo_paths { ./gpif ./producer } [current_fileset]
 update_ip_catalog
 create_bd_design "$top"
 set gpif [create_bd_cell -type ip -vlnv [get_ipdefs *www.eurecom.fr:GPIF:gpif:*] gpif]
+set producer [create_bd_cell -type ip -vlnv [get_ipdefs *www.eurecom.fr:PRODUCER:producer:*] producer]
 
-#create_bd_cell -type ip -vlnv xilinx.com:ip:fifo_generator:13.2 fifo_generator_0
-#set_property -dict [list CONFIG.Input_Data_Width {32} CONFIG.Input_Depth {512} CONFIG.Output_Data_Width {32} CONFIG.Output_Depth {512} CONFIG.Reset_Pin {false} CONFIG.Reset_Type {Asynchronous_Reset} CONFIG.Use_Dout_Reset {false} CONFIG.Use_Extra_Logic {false} CONFIG.Data_Count_Width {9} CONFIG.Write_Data_Count_Width {9} CONFIG.Read_Data_Count_Width {9} CONFIG.Full_Threshold_Assert_Value {510} CONFIG.Full_Threshold_Negate_Value {509}] [get_bd_cells fifo_generator_0]
-#set_property -dict [list CONFIG.Input_Data_Width {64} CONFIG.Output_Data_Width {32} CONFIG.Output_Depth {1024} CONFIG.Overflow_Flag {true} CONFIG.Use_Extra_Logic {true} CONFIG.Write_Data_Count_Width {10} CONFIG.Read_Data_Count_Width {11} CONFIG.Full_Threshold_Assert_Value {509} CONFIG.Full_Threshold_Negate_Value {508}] [get_bd_cells fifo_generator_0]
-#set_property -dict [list CONFIG.Write_Acknowledge_Flag {true}] [get_bd_cells fifo_generator_0]
-#set_property -dict [list CONFIG.Almost_Full_Flag {true} CONFIG.Write_Acknowledge_Flag {false}] [get_bd_cells fifo_generator_0]
-#set_property -dict [list CONFIG.Input_Data_Width {128} CONFIG.Input_Depth {4096} CONFIG.Output_Depth {16384} CONFIG.Data_Count_Width {12} CONFIG.Write_Data_Count_Width {13} CONFIG.Read_Data_Count_Width {15} CONFIG.Full_Threshold_Assert_Value {4093} CONFIG.Full_Threshold_Negate_Value {4092}] [get_bd_cells fifo_generator_0]
+create_bd_cell -type ip -vlnv xilinx.com:ip:fifo_generator:13.2 fifo_generator_0
+  set_property -dict [list \
+CONFIG.Input_Data_Width {64} \
+CONFIG.Input_Depth {8192} \
+CONFIG.Output_Data_Width {32} \
+CONFIG.Output_Depth {16384} \
+CONFIG.Reset_Pin {false} \
+CONFIG.Reset_Type {Asynchronous_Reset} \
+CONFIG.Use_Dout_Reset {false} \
+CONFIG.Write_Acknowledge_Flag {false} \
+CONFIG.Programmable_Empty_Type {Single_Programmable_Empty_Threshold_Constant} \
+CONFIG.Empty_Threshold_Assert_Value {4096} \
+CONFIG.Programmable_Full_Type {Single_Programmable_Full_Threshold_Constant} \
+CONFIG.Full_Threshold_Assert_Value {8184} \
+CONFIG.Overflow_Flag {true} \
+] [get_bd_cells fifo_generator_0]
+#CONFIG.Input_Depth {8192} \
+#CONFIG.Almost_Full_Flag {true} \
+
+connect_bd_net [get_bd_pins gpif/fifo_prog_empty] [get_bd_pins fifo_generator_0/prog_empty]
+connect_bd_net [get_bd_pins fifo_generator_0/dout] [get_bd_pins gpif/fifo_out]
+connect_bd_net [get_bd_pins fifo_generator_0/rd_en] [get_bd_pins gpif/fifo_read]
+connect_bd_net [get_bd_pins fifo_generator_0/prog_full] [get_bd_pins producer/fifo_almost_full]
+connect_bd_net [get_bd_pins fifo_generator_0/din] [get_bd_pins producer/fifo_in]
+connect_bd_net [get_bd_pins fifo_generator_0/wr_en] [get_bd_pins producer/fifo_write]
+connect_bd_net [get_bd_pins fifo_generator_0/overflow] [get_bd_pins gpif/overflow]
 
 set ps7 [create_bd_cell -type ip -vlnv [get_ipdefs *xilinx.com:ip:processing_system7:*] ps7]
 apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 -config {make_external "FIXED_IO, DDR" apply_board_preset "1" Master "Disable" Slave "Disable" } $ps7
+apply_bd_automation -rule xilinx.com:bd_rule:clkrst -config {Clk "/ps7/FCLK_CLK0 (100 MHz)" }  [get_bd_pins producer/aclk]
+apply_bd_automation -rule xilinx.com:bd_rule:clkrst -config {Clk "/ps7/FCLK_CLK0 (100 MHz)" }  [get_bd_pins fifo_generator_0/clk]
 #set_property -dict [list CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {100.000000}] $ps7
 #set_property -dict [list CONFIG.PCW_USE_M_AXI_GP0 {1}] $ps7
 #set_property -dict [list CONFIG.PCW_M_AXI_GP0_ENABLE_STATIC_REMAP {1}] $ps7
@@ -183,6 +219,7 @@ apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 -config {make_ex
 # Addresses ranges
 #set_property offset 0x40000000 [get_bd_addr_segs -of_object [get_bd_intf_pins /ps7/M_AXI_GP0]]
 #set_property range 1G [get_bd_addr_segs -of_object [get_bd_intf_pins /ps7/M_AXI_GP0]]
+
 
 # Enable interrupt
 apply_bd_automation -rule xilinx.com:bd_rule:clkrst -config {Clk "/ps7/FCLK_CLK0 (100 MHz)" }  [get_bd_pins gpif/aclk]

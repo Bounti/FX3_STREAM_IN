@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_fx3_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_fx3" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="179200000001fs"></ZoomEndTime>
+      <Cursor1Time time="30000000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="190"></NameColumnWidth>
+      <ValueColumnWidth column_width="165"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="52" />
+   <wvobject fp_name="divider66" type="divider">
+      <obj_property name="label">TOP</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/overflow">
+      <obj_property name="ElementShortName">overflow</obj_property>
+      <obj_property name="ObjectShortName">overflow</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/aclk">
+      <obj_property name="ElementShortName">aclk</obj_property>
+      <obj_property name="ObjectShortName">aclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/aresetn">
+      <obj_property name="ElementShortName">aresetn</obj_property>
+      <obj_property name="ObjectShortName">aresetn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/clk_out">
+      <obj_property name="ElementShortName">clk_out</obj_property>
+      <obj_property name="ObjectShortName">clk_out</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_fx3/data">
+      <obj_property name="ElementShortName">data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">data[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/fx3_data_available">
+      <obj_property name="ElementShortName">fx3_data_available</obj_property>
+      <obj_property name="ObjectShortName">fx3_data_available</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/fx3_resetn">
+      <obj_property name="ElementShortName">fx3_resetn</obj_property>
+      <obj_property name="ObjectShortName">fx3_resetn</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_fx3/word_counter">
+      <obj_property name="ElementShortName">word_counter[31:0]</obj_property>
+      <obj_property name="ObjectShortName">word_counter[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/fx3_read_ready_d">
+      <obj_property name="ElementShortName">fx3_read_ready_d</obj_property>
+      <obj_property name="ObjectShortName">fx3_read_ready_d</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DATA_COUNTER_ARMED">
+      <obj_property name="ElementShortName">DATA_COUNTER_ARMED</obj_property>
+      <obj_property name="ObjectShortName">DATA_COUNTER_ARMED</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DATA_CNT_HIT">
+      <obj_property name="ElementShortName">DATA_CNT_HIT</obj_property>
+      <obj_property name="ObjectShortName">DATA_CNT_HIT</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DMA_RDY">
+      <obj_property name="ElementShortName">DMA_RDY</obj_property>
+      <obj_property name="ObjectShortName">DMA_RDY</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_fx3/fx3_state_d">
+      <obj_property name="ElementShortName">fx3_state_d[3:0]</obj_property>
+      <obj_property name="ObjectShortName">fx3_state_d[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_fx3/fx3_state">
+      <obj_property name="ElementShortName">fx3_state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">fx3_state[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/fx3_read_ready">
+      <obj_property name="ElementShortName">fx3_read_ready</obj_property>
+      <obj_property name="ObjectShortName">fx3_read_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider67" type="divider">
+      <obj_property name="label">FIFO</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/fifo_generator_0/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_fx3/DUT/top_i/fifo_generator_0/din">
+      <obj_property name="ElementShortName">din[63:0]</obj_property>
+      <obj_property name="ObjectShortName">din[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/fifo_generator_0/wr_en">
+      <obj_property name="ElementShortName">wr_en</obj_property>
+      <obj_property name="ObjectShortName">wr_en</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/fifo_generator_0/rd_en">
+      <obj_property name="ElementShortName">rd_en</obj_property>
+      <obj_property name="ObjectShortName">rd_en</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_fx3/DUT/top_i/fifo_generator_0/dout">
+      <obj_property name="ElementShortName">dout[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dout[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/fifo_generator_0/full">
+      <obj_property name="ElementShortName">full</obj_property>
+      <obj_property name="ObjectShortName">full</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/fifo_generator_0/empty">
+      <obj_property name="ElementShortName">empty</obj_property>
+      <obj_property name="ObjectShortName">empty</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/fifo_generator_0/prog_full">
+      <obj_property name="ElementShortName">prog_full</obj_property>
+      <obj_property name="ObjectShortName">prog_full</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/fifo_generator_0/prog_empty">
+      <obj_property name="ElementShortName">prog_empty</obj_property>
+      <obj_property name="ObjectShortName">prog_empty</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider68" type="divider">
+      <obj_property name="label">GPIF</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/gpif/U0/aclk">
+      <obj_property name="ElementShortName">aclk</obj_property>
+      <obj_property name="ObjectShortName">aclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/gpif/U0/aresetn">
+      <obj_property name="ElementShortName">aresetn</obj_property>
+      <obj_property name="ObjectShortName">aresetn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/gpif/U0/clk_out">
+      <obj_property name="ElementShortName">clk_out</obj_property>
+      <obj_property name="ObjectShortName">clk_out</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_fx3/DUT/top_i/gpif/U0/data">
+      <obj_property name="ElementShortName">data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">data[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/gpif/U0/fx3_data_available">
+      <obj_property name="ElementShortName">fx3_data_available</obj_property>
+      <obj_property name="ObjectShortName">fx3_data_available</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/gpif/U0/fx3_resetn">
+      <obj_property name="ElementShortName">fx3_resetn</obj_property>
+      <obj_property name="ObjectShortName">fx3_resetn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/gpif/U0/fx3_read_ready">
+      <obj_property name="ElementShortName">fx3_read_ready</obj_property>
+      <obj_property name="ObjectShortName">fx3_read_ready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_fx3/DUT/top_i/gpif/U0/led">
+      <obj_property name="ElementShortName">led[7:0]</obj_property>
+      <obj_property name="ObjectShortName">led[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/gpif/U0/fifo_read">
+      <obj_property name="ElementShortName">fifo_read</obj_property>
+      <obj_property name="ObjectShortName">fifo_read</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/gpif/U0/fifo_prog_empty">
+      <obj_property name="ElementShortName">fifo_prog_empty</obj_property>
+      <obj_property name="ObjectShortName">fifo_prog_empty</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_fx3/DUT/top_i/gpif/U0/fifo_out">
+      <obj_property name="ElementShortName">fifo_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">fifo_out[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/tb_fx3/DUT/top_i/gpif/U0/current_state">
+      <obj_property name="ElementShortName">current_state</obj_property>
+      <obj_property name="ObjectShortName">current_state</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/tb_fx3/DUT/top_i/gpif/U0/next_state">
+      <obj_property name="ElementShortName">next_state</obj_property>
+      <obj_property name="ObjectShortName">next_state</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/tb_fx3/DUT/top_i/gpif/U0/word_counter">
+      <obj_property name="ElementShortName">word_counter</obj_property>
+      <obj_property name="ObjectShortName">word_counter</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/gpif/U0/fx3_read_ready_d">
+      <obj_property name="ElementShortName">fx3_read_ready_d</obj_property>
+      <obj_property name="ObjectShortName">fx3_read_ready_d</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_fx3/DUT/top_i/gpif/U0/status">
+      <obj_property name="ElementShortName">status[4:0]</obj_property>
+      <obj_property name="ObjectShortName">status[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/gpif/U0/fx3_resetn_d">
+      <obj_property name="ElementShortName">fx3_resetn_d</obj_property>
+      <obj_property name="ObjectShortName">fx3_resetn_d</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/gpif/U0/fifo_read_d">
+      <obj_property name="ElementShortName">fifo_read_d</obj_property>
+      <obj_property name="ObjectShortName">fifo_read_d</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider69" type="divider">
+      <obj_property name="label">PRODUCER</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/producer/U0/aclk">
+      <obj_property name="ElementShortName">aclk</obj_property>
+      <obj_property name="ObjectShortName">aclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/producer/U0/aresetn">
+      <obj_property name="ElementShortName">aresetn</obj_property>
+      <obj_property name="ObjectShortName">aresetn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/producer/U0/fifo_write">
+      <obj_property name="ElementShortName">fifo_write</obj_property>
+      <obj_property name="ObjectShortName">fifo_write</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/producer/U0/fifo_almost_full">
+      <obj_property name="ElementShortName">fifo_almost_full</obj_property>
+      <obj_property name="ObjectShortName">fifo_almost_full</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_fx3/DUT/top_i/producer/U0/fifo_in">
+      <obj_property name="ElementShortName">fifo_in[63:0]</obj_property>
+      <obj_property name="ObjectShortName">fifo_in[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_fx3/DUT/top_i/producer/U0/counter">
+      <obj_property name="ElementShortName">counter[31:0]</obj_property>
+      <obj_property name="ObjectShortName">counter[31:0]</obj_property>
+   </wvobject>
+</wave_config>
