@@ -120,12 +120,14 @@ end process;
 stream_in_fsm_f : process(aclk, fx3_resetn_d)begin
   if(fx3_resetn_d = '0')then 
     current_state <= idle;
-    fifo_read     <= '0';
+    --fifo_read     <= '0';
   elsif(aclk'event and aclk = '1')then 
-    fifo_read     <= fifo_read_d;
+    --fifo_read     <= fifo_read_d;
     current_state <= next_state;
   end if;	
 end process;
+
+fifo_read <= '1' when (current_state = write) else '0';
 
 --StreamIN mode state machine combo
 stream_in_fsm : process(current_state, fx3_read_ready_d, word_counter)begin

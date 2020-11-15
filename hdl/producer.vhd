@@ -47,19 +47,22 @@ architecture producer_arch of producer is
 
 begin --architecture begining
 
-process(aclk, aresetn)begin
+process(aclk, aresetn, fifo_almost_full)begin
   if(aresetn = '0')then
     --counter <= (others => '0');
     counter <= 0;
+    fifo_write <= '0';
   elsif(aclk'event and aclk = '1')then
     if(fifo_almost_full = '0') then
       counter <= counter + 1;
+      fifo_write <= '1';
+    else
+      fifo_write <= '0';
     end if;
   end if;
 end process;
 
 fifo_in <= std_logic_vector(to_unsigned(counter,32))&std_logic_vector(to_unsigned(counter,32));
-fifo_write <= '1' when (fifo_almost_full = '0') else '0';
 
 end architecture;
 

@@ -39,9 +39,9 @@ reg DATA_COUNTER_ARMED = 1'b0;
 wire DATA_CNT_HIT = (word_counter == 32'D4091)? 1'b1: 1'b0;
 reg DMA_RDY = 1'b1;
 
-reg [3:0] fx3_state_d;
-reg [3:0] fx3_state;
-parameter [3:0] START = 3'b000,
+reg [2:0] fx3_state_d;
+reg [2:0] fx3_state;
+parameter [2:0] START = 3'b000,
   TH0_WAIT = 3'b001,
   TH0_REQUEST = 3'b010,
   TH0_READ = 3'b011,
@@ -72,17 +72,18 @@ initial begin
   aresetn = 1;
   #100ns
   fx3_resetn = 1;
-  
-  DMA_RDY = 1'b0;
-  #100us
   DMA_RDY = 1'b1;
 
+ 
+  //DMA_RDY = 1'b0;
+  //#10ns
+  //DMA_RDY = 1'b1;
 end
 
-always @(fx3_state_d) begin
-  if(fx3_state_d == TH0_REQUEST || fx3_state_d == TH1_REQUEST) begin
+always @(fx3_state) begin
+  if(fx3_state == TH0_REQUEST || fx3_state == TH1_REQUEST) begin
     DATA_COUNTER_ARMED = 1'b1;
-  end else if(fx3_state_d == TH0_WAIT || fx3_state_d == TH1_WAIT) begin
+  end else if(fx3_state == TH0_WAIT || fx3_state == TH1_WAIT) begin
     DATA_COUNTER_ARMED = 1'b0;
   end
 end
@@ -107,8 +108,9 @@ always @(posedge clk_out) begin
   end
 end
 
-always @(fx3_state_d, fx3_data_available, DATA_CNT_HIT, DMA_RDY) begin
-  case (fx3_state_d)
+always @(fx3_state, fx3_data_available, DATA_CNT_HIT, DMA_RDY) begin
+  fx3_state_d <= fx3_state;
+  case (fx3_state)
     START: begin 
     fx3_state_d <= TH0_WAIT;
     fx3_read_ready_d <= 1'b0;

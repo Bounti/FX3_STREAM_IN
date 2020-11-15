@@ -138,6 +138,7 @@ generate_target Simulation [get_files $builddir/top.srcs/sources_1/bd/top/top.bd
 export_ip_user_files -of_objects [get_files $builddir/top.srcs/sources_1/bd/top/top.bd] -no_script -sync -force -quiet
 export_simulation -of_objects [get_files $builddir/top.srcs/sources_1/bd/top/top.bd] -directory $builddir/top.ip_user_files/sim_scripts -ip_user_files_dir $builddir/top.ip_user_files -ipstatic_source_dir $builddir/top.ip_user_files/ipstatic -lib_map_path [list {modelsim=$builddir/top.cache/compile_simlib/modelsim} {questa=$builddir/top.cache/compile_simlib/questa} {ies=$builddir/top.cache/compile_simlib/ies} {xcelium=$builddir/top.cache/compile_simlib/xcelium} {vcs=$builddir/top.cache/compile_simlib/vcs} {riviera=$builddir/top.cache/compile_simlib/riviera}] -use_ip_compiled_libs -force -quiet
 
+set_property -name {xsim.simulate.xsim.more_options} -value {-maxdeltaid -1} -objects [get_filesets sim_1]
 launch_simulation
 
 #open_vcd trace.vcd

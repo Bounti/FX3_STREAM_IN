@@ -12,14 +12,17 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="179200000001fs"></ZoomEndTime>
-      <Cursor1Time time="30000000000fs"></Cursor1Time>
+      <ZoomEndTime time="15000000001fs"></ZoomEndTime>
+      <Cursor1Time time="11000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="190"></NameColumnWidth>
-      <ValueColumnWidth column_width="165"></ValueColumnWidth>
+      <ValueColumnWidth column_width="157"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="52" />
+   <wave_markers>
+      <marker label="" time="4119000000" />
+   </wave_markers>
    <wvobject fp_name="divider66" type="divider">
       <obj_property name="label">TOP</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -77,12 +80,12 @@
       <obj_property name="ObjectShortName">DMA_RDY</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_fx3/fx3_state_d">
-      <obj_property name="ElementShortName">fx3_state_d[3:0]</obj_property>
-      <obj_property name="ObjectShortName">fx3_state_d[3:0]</obj_property>
+      <obj_property name="ElementShortName">fx3_state_d[2:0]</obj_property>
+      <obj_property name="ObjectShortName">fx3_state_d[2:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_fx3/fx3_state">
-      <obj_property name="ElementShortName">fx3_state[3:0]</obj_property>
-      <obj_property name="ObjectShortName">fx3_state[3:0]</obj_property>
+      <obj_property name="ElementShortName">fx3_state[2:0]</obj_property>
+      <obj_property name="ObjectShortName">fx3_state[2:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_fx3/fx3_read_ready">
       <obj_property name="ElementShortName">fx3_read_ready</obj_property>
@@ -169,6 +172,8 @@
    <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/gpif/U0/fifo_read">
       <obj_property name="ElementShortName">fifo_read</obj_property>
       <obj_property name="ObjectShortName">fifo_read</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/gpif/U0/fifo_prog_empty">
       <obj_property name="ElementShortName">fifo_prog_empty</obj_property>
@@ -189,6 +194,9 @@
    <wvobject type="other" fp_name="/tb_fx3/DUT/top_i/gpif/U0/word_counter">
       <obj_property name="ElementShortName">word_counter</obj_property>
       <obj_property name="ObjectShortName">word_counter</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_fx3/DUT/top_i/gpif/U0/fx3_read_ready_d">
       <obj_property name="ElementShortName">fx3_read_ready_d</obj_property>
@@ -230,8 +238,8 @@
       <obj_property name="ElementShortName">fifo_in[63:0]</obj_property>
       <obj_property name="ObjectShortName">fifo_in[63:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_fx3/DUT/top_i/producer/U0/counter">
-      <obj_property name="ElementShortName">counter[31:0]</obj_property>
-      <obj_property name="ObjectShortName">counter[31:0]</obj_property>
+   <wvobject type="other" fp_name="/tb_fx3/DUT/top_i/producer/U0/counter">
+      <obj_property name="ElementShortName">counter</obj_property>
+      <obj_property name="ObjectShortName">counter</obj_property>
    </wvobject>
 </wave_config>
