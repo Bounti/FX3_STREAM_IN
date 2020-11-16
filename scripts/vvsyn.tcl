@@ -210,6 +210,7 @@ connect_bd_net [get_bd_pins fifo_generator_0/overflow] [get_bd_pins gpif/overflo
 
 set ps7 [create_bd_cell -type ip -vlnv [get_ipdefs *xilinx.com:ip:processing_system7:*] ps7]
 apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 -config {make_external "FIXED_IO, DDR" apply_board_preset "1" Master "Disable" Slave "Disable" } $ps7
+set_property -dict [list CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {95.000000} CONFIG.PCW_FCLK0_PERIPHERAL_CLKSRC {IO PLL}] [get_bd_cells ps7]
 apply_bd_automation -rule xilinx.com:bd_rule:clkrst -config {Clk "/ps7/FCLK_CLK0 (100 MHz)" }  [get_bd_pins producer/aclk]
 apply_bd_automation -rule xilinx.com:bd_rule:clkrst -config {Clk "/ps7/FCLK_CLK0 (100 MHz)" }  [get_bd_pins fifo_generator_0/clk]
 #set_property -dict [list CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {100.000000}] $ps7
