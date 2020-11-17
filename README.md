@@ -74,12 +74,12 @@ Using Cypress SDK, we measured a throughput of 380MB/s.
 
 ![Performance](./doc/perf.svg)
 
-# Credits
 
-This project is based on the following projects:
-- The FX3 firmware and the GPIF configuration is a fork of [DomesdayDuplicator](https://github.com/simoninns/DomesdayDuplicator).
-- We refer to the [official examples](https://www.cypress.com/documentation/code-examples/usb-superspeed-code-examples) provided by Cypress.
-- The synthesis script are forked from [SAB4Z](https://gitlab.telecom-paris.fr/renaud.pacalet/sab4z)
+| FPGA Clock Frequency | 60MHz    | 95MHz    | 100MHz   |
+|----------------------|----------|----------|----------|
+| USB 3.0 Throughput   | 280MB/s  | 350MB/s  | 390MB/s  |
+
+> Note: At 100MHz, I observed inconsistency on received data. This is because our set-up cannot ensure such timing. It could be fixed by designing a custom PCB with shorter path between the Cypress FIFO chip and the FPGA. 
 
 # Debugging the FX3 firmware
 
@@ -110,4 +110,12 @@ picocom -b115200 -fn -d8 -r -l /dev/ttyACM0
 All files copied from Cypress examples are under the CYPRESS SOFTWARE LICENSE AGREEMENT.
 The Synthesis script is under the CeCILL license
 All other files are under the GNU GPL3 license.
+
+# Credits
+
+This project is based on the following projects:
+- The FX3 firmware and the GPIF configuration is a fork of [DomesdayDuplicator](https://github.com/simoninns/DomesdayDuplicator).
+- We refer to the [official examples](https://www.cypress.com/documentation/code-examples/usb-superspeed-code-examples) provided by Cypress.
+- The synthesis script are forked from [SAB4Z](https://gitlab.telecom-paris.fr/renaud.pacalet/sab4z)
+
 
